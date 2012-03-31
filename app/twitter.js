@@ -5,7 +5,11 @@ var credentials = require('./credentials.js');
 //create redis client                                                                                                                                                                                                                       
 var client = redis.createClient();
 
-//if the 'awesome' key doesn't exist, create it                                                                                                                                                                                             
+//if the 'awesome' key doesn't exist, create it        
+//instead of waiting use callback function
+//parameters specified by API error usually goes first
+//all this is not necessary node will set awesome
+/*
 client.exists('awesome', function(error, exists) {
     if(error) {
         console.log('ERROR: '+error);
@@ -13,6 +17,7 @@ client.exists('awesome', function(error, exists) {
         client.set('awesome', 0); //create the awesome key
     };
 });
+*/
 
 var t = new twitter({
     consumer_key: credentials.consumer_key,
@@ -27,9 +32,22 @@ t.stream(
     function(stream) {
         stream.on('data', function(tweet) {
             console.log(tweet.text);
-            //if awesome is in the tweet text, increment the counter                                                                                                                                                                        
+            //if awesome is in the tweet text, increment the counter 
+            //need if for all other words           
             if(tweet.text.match(/awesome/)) {
                 client.incr('awesome');
+            }
+            if(tweet.text.match(/cool/)) {
+                client.incr('cool');
+            }
+             if(tweet.text.match(/rad/)) {
+                client.incr('rad');
+            }
+             if(tweet.text.match(/gnarly/)) {
+                client.incr('gnarly');
+            }
+             if(tweet.text.match(/groovy/)) {
+                client.incr('groovy');
             }
         });
     }
