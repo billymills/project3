@@ -32,11 +32,11 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 app.get('/semmypurewal', function(req, res) {
-    res.send(‘Welcome to the profile of Semmy Purewal’);
+    res.send('Welcome to the profile of Semmy Purewal');
 });
 
 app.get('/users/:user', function(req, res) {
-    res.send(‘Welcome to the profile of ’ + req.params.user + ‘!’);
+    res.send('Welcome to the profile of ' + req.params.user + '!');
 });
 
 app.listen(3000);
