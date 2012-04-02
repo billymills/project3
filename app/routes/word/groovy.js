@@ -9,10 +9,10 @@ var redis = require('redis');
 var client = redis.createClient();
 
 exports.index = function(req, res) {
-	client.get('awesome', function(err, count) {
+	client.get('groovy', function(err, count) {
 		if(err) console.log(err)
 		else {
-			res.render('awesome', {awesomeCount:count});
+			res.render('groovy', {groovyCount:count});
 		}
 	});
 };	
