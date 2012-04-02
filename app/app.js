@@ -5,6 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
+var awesome = require('./routes/word/awesome');
 
 var app = module.exports = express.createServer();
 
@@ -42,6 +43,7 @@ app.get('/users/:user', function(req, res) {
 */
 app.get('/', routes.index);
 app.get('/users/:user', routes.user);
+app.get('/word/awesome', awesome.index);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
