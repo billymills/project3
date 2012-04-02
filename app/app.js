@@ -29,6 +29,7 @@ app.configure('production', function(){
 
 // Routes
 
+/*
 app.get('/', routes.index);
 
 app.get('/semmypurewal', function(req, res) {
@@ -38,6 +39,9 @@ app.get('/semmypurewal', function(req, res) {
 app.get('/users/:user', function(req, res) {
     res.send('Welcome to the profile of ' + req.params.user + '!');
 });
+*/
+app.get('/', routes.index);
+app.get('/users/:user', routes.user);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
