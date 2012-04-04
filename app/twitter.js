@@ -28,14 +28,17 @@ var t = new twitter({
 
 t.stream(
     'statuses/filter',
-    { track: ['awesome', 'cool', 'rad', 'gnarly', 'groovy'] },
+    { track: ['awesome', 'cool', 'rad', 'gnarly', 'groovy', 'http'] },
     function(stream) {
         stream.on('data', function(tweet) {
             console.log(tweet.text);
             //if awesome is in the tweet text, increment the counter 
-            //need if for all other words           
+         
             if(tweet.text.match(/awesome/)) {
                 client.incr('awesome');
+                	if(tweet.text.match(/http/)) {
+                		client.incr('http');
+                	}
             }
             if(tweet.text.match(/cool/)) {
                 client.incr('cool');

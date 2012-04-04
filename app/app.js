@@ -54,10 +54,11 @@ app.get('/users/:user', function(req, res) {
 app.get('/', routes.index);
 app.get('/users/:user', routes.user);
 app.get('/word/awesome', awesome.index);
+app.get('/word/awesome', awesome.http);
 app.get('/word/cool', cool.index);
 app.get('/word/rad', rad.index);
 app.get('/word/gnarly', gnarly.index);
-app.get('/word/groovy', groovy.index);
+app.get('/word/groovy', groovy.index); //hand off to groovy controller
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
