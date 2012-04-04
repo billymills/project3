@@ -34,13 +34,33 @@ t.stream(
             console.log(tweet.text);
             //if awesome is in the tweet text, increment the counter 
          
-            if(tweet.text.match(/awesome/)) {
+            if(tweet.text.match(/awesome/) && tweet.entities.urls == undefined) {
                 client.incr('awesome');
-                	if(tweet.text.match(/http/)) {
-                		client.incr('http');
-                	}
-            }
-            if(tweet.text.match(/cool/)) {
+                client.zadd('awesomeLink', tweet.entities.urls[0].expanded_url);
+                
+                	//if(tweet.entities.urls[0] != "") {
+                		//client.incr('http');
+                		//var link = tweet.entities.urls[0].expanded_url;
+                		//client.LPUSH("linklist", link);
+                		//client.LPUSH(link, function(err, linkList) {
+						//	if(err) console.log(err)
+						//		else {
+						//			res.render('awesome', {awesomeCount:count[0], httpCount:count[1]});
+						//
+						//		}
+						//});
+                	//}
+                	
+                
+                	//if(tweet.text.match(/http/)) {
+                	//	client.incr('http');
+                	//	var link = tweet.entities.urls[0].expanded_url
+                	//	client.RPUSH linkList link;
+                	//}
+                	
+                	
+            } //end if
+            /*if(tweet.text.match(/cool/)) {
                 client.incr('cool');
             }
              if(tweet.text.match(/rad/)) {
@@ -52,6 +72,7 @@ t.stream(
              if(tweet.text.match(/groovy/)) {
                 client.incr('groovy');
             }
+            */
         });
     }
 );
