@@ -6,12 +6,29 @@ April 4, 2012
 */
 
 
-h1 {
-	color: red;
+html {
+	height: 100%;
 }
+
+h1 {
+	font-family: 'Permanent Marker', cursive;
+	color: black;
+	
+}
+
+
 
 body {
-  padding: 50px;
-  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+	background-color: #3f3f3f;
+  	height: 100%;
+  	/*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 
+.container {
+	background-color: white;
+}
+
+#main {
+	min-height: 100%;
+	padding: 20px;
+}
