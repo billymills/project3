@@ -5,8 +5,6 @@
 * April 4, 2012
 */
 
-
-
 // Module dependencies.
  
 var express = require('express');
@@ -55,6 +53,7 @@ app.get('/', routes.index);
 app.get('/users/:user', routes.user);
 app.get('/word/awesome', awesome.index);
 app.get('/word/awesome', awesome.http);
+//app.get('/word/awesome', awesome.awesomeLink);
 app.get('/word/cool', cool.index);
 app.get('/word/rad', rad.index);
 app.get('/word/gnarly', gnarly.index);

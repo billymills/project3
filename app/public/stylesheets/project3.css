@@ -26,6 +26,7 @@ body {
 
 .container {
 	background-color: white;
+	border-right, border-left: 3px solid black;
 }
 
 #main {

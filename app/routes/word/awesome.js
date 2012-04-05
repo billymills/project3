@@ -13,8 +13,11 @@ exports.index = function(req, res) {
 		if(err) console.log(err)
 		else {
 			res.render('awesome', {awesomeCount:count[0], httpCount:count[1]});
+			//res.render('awesome', links:awesomeLink(0,-1));
 			
 		}
+	var link = client.zrange('awesomeLink', 0, -1);
+	res.render(link);
 	});
 	
 	

@@ -38,18 +38,7 @@ t.stream(
                 client.incr('awesome');
                 client.zadd('awesomeLink', tweet.entities.urls[0].expanded_url);
                 
-                	//if(tweet.entities.urls[0] != "") {
-                		//client.incr('http');
-                		//var link = tweet.entities.urls[0].expanded_url;
-                		//client.LPUSH("linklist", link);
-                		//client.LPUSH(link, function(err, linkList) {
-						//	if(err) console.log(err)
-						//		else {
-						//			res.render('awesome', {awesomeCount:count[0], httpCount:count[1]});
-						//
-						//		}
-						//});
-                	//}
+                	
                 	
                 
                 	//if(tweet.text.match(/http/)) {
@@ -59,20 +48,24 @@ t.stream(
                 	//}
                 	
                 	
-            } //end if
-            /*if(tweet.text.match(/cool/)) {
+            } //end awesome if
+            
+            if(tweet.text.match(/cool/)) {
                 client.incr('cool');
-            }
+            } //end cool if
+            
              if(tweet.text.match(/rad/)) {
                 client.incr('rad');
-            }
+            } //end rad if
+            
              if(tweet.text.match(/gnarly/)) {
                 client.incr('gnarly');
-            }
+            } //end gnarly if
+            
              if(tweet.text.match(/groovy/)) {
                 client.incr('groovy');
-            }
-            */
+            } //end groovy if
+            
         });
     }
 );
