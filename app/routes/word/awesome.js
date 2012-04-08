@@ -10,7 +10,8 @@ var client = redis.createClient();
 
 exports.index = function(req, res) {
 	//client.zrevrange(['awesomeLink', 0, 0], function(error, linkresult) {
-	client.zrevrange('awesomeLink', 0, -1, function(error, linkresult) {
+	
+	client.zrevrange('awesomeLink', 0, 0, function(error, linkresult) { // 0, -1 works
 		if (error) {
 			console.log (error);
 		}	

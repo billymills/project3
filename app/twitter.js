@@ -2,9 +2,9 @@ var twitter = require('ntwitter');
 var redis = require('redis');
 var credentials = require('./credentials.js');
 
-var link;                                                                                                                                                                                                                      
+//var link;                                                                                                                                                                                                                      
 var client = redis.createClient();
-
+var url = "";
 
 var t = new twitter({
     consumer_key: credentials.consumer_key,
@@ -18,26 +18,30 @@ t.stream(
     { track: ['awesome'] },
     function(stream) {
         stream.on('data', function(tweet) {
-        	
         
+        
+        	
+    
             console.log(tweet.text);
             try {
 				if (tweet.entities.urls.expanded_url !== undefined) { 
-					link = tweet.entities.urls[0].expanded_url; 
+					url = tweet.entities.urls[0].expanded_url; 
 					//link = "ex";
-					console.log('link');
+					console.log(url);
 					
 					}
 				else if (tweet.entities.urls.url !== undefined) {
-					link = tweet.entities.urls[0].url;
+					url = tweet.entities.urls[0].url;
 					//link = "short";
 					}
-					console.log('link');
-					//client.zadd('awesomeLink', 1, 0, link);
+					console.log(url);
+					//client.zadd(['awesomeLink', 1, link]);
 					client.zadd('awesomeLink', 1, tweet.entities.urls[0].expanded_url);
 				}
 				catch (error) {
 				}
+
+				
 				
 			
          	/*
