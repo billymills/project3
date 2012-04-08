@@ -7,15 +7,12 @@ April 4, 2012
 
 var redis = require('redis');
 var client = redis.createClient();
-//var express = require('express');
-
-
 
 exports.index = function(req, res) {
-	
-	client.zrevrange(['awesomeLink', 0, 0], function(error, linkresult) {
+	//client.zrevrange(['awesomeLink', 0, 0], function(error, linkresult) {
+	client.zrevrange('awesomeLink', 0, -1, function(error, linkresult) {
 		if (error) {
-					console.log (error);
+			console.log (error);
 		}	
 		else {
 			res.render('awesome', {link:linkresult});

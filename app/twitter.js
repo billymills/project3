@@ -1,26 +1,10 @@
 var twitter = require('ntwitter');
 var redis = require('redis');
 var credentials = require('./credentials.js');
-//var express = require('express');
 
-//var word = "awesome";
-var url;
-//create redis client                                                                                                                                                                                                                       
+var link;                                                                                                                                                                                                                      
 var client = redis.createClient();
 
-//if the 'awesome' key doesn't exist, create it        
-//instead of waiting use callback function
-//parameters specified by API error usually goes first
-//all this is not necessary node will set awesome
-/*
-client.exists('awesome', function(error, exists) {
-    if(error) {
-        console.log('ERROR: '+error);
-    } else if(!exists) {
-        client.set('awesome', 0); //create the awesome key
-    };
-});
-*/
 
 var t = new twitter({
     consumer_key: credentials.consumer_key,
@@ -34,27 +18,28 @@ t.stream(
     { track: ['awesome'] },
     function(stream) {
         stream.on('data', function(tweet) {
+        	
+        
             console.log(tweet.text);
-            
             try {
-				//test for expanded URLs
 				if (tweet.entities.urls.expanded_url !== undefined) { 
-					URL = tweet.entities.urls[0].expanded_url; 
-					console.log(URL);
+					link = tweet.entities.urls[0].expanded_url; 
+					//link = "ex";
+					console.log('link');
+					
 					}
-				//test for shortened URLs
 				else if (tweet.entities.urls.url !== undefined) {
-					URL = tweet.entities.urls[0].url; //test for url
+					link = tweet.entities.urls[0].url;
+					//link = "short";
 					}
-
-					console.log(URL); //display the URL 
-
-					//store the URL in a sorted set in REDIS
-					client.zadd('awesomeLink', 1, URL); 
+					console.log('link');
+					//client.zadd('awesomeLink', 1, 0, link);
+					client.zadd('awesomeLink', 1, tweet.entities.urls[0].expanded_url);
 				}
-
 				catch (error) {
 				}
+				
+			
          	/*
            for(var i = 0; i < tweet.entities.urls.length; i++) {
 				console.log(tweet.entities.urls[i]);
