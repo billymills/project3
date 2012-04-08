@@ -10,13 +10,19 @@ html {
 	height: 100%;
 }
 
-h1 {
+h1,h4 {
 	font-family: 'Permanent Marker', cursive;
 	color: black;
-	
 }
 
 
+/*
+#links {
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+}
+*/
 
 body {
 	background-color: #3f3f3f;

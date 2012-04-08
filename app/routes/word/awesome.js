@@ -10,43 +10,30 @@ var client = redis.createClient();
 
 exports.index = function(req, res) {
 	//client.zrevrange(['awesomeLink', 0, 0], function(error, linkresult) {
-	
-	
-	
-	client.zrevrange('awesomeLink', 0, 10, function(error, linkresult) { // 0, -1 works
+	client.zrevrange('awesomeLink', 0, 4, function(error, linkResult) { // 0, -1 works
 		var linkArray = new Array();
-		
-		
-		
 		if (error) {
 			console.log (error);
-		}	
+		}  //end if
 		
-		else if (linkresult) {
-			for (i=0; i<=10; i++) {
-				if (linkresult[i]) {
-					linkArray[i]=linkresult[i];
-				} //end if
+		else if (linkResult) {
+			for (i=0; i<5; i++) {
+				if (linkResult[i]) {
+					linkArray[i]=linkResult[i];
+				} //end internal if
 				else {
-					linkresult[i] = "";
+					linkResult[i] = "";
 				} //end else
-			} //end for	
-				
+			} //end for		
 		} //end else if		
-		
-		
-			res.render('awesome', {link:linkresult[0],
-									link2:linkresult[1]});
-			
-	});
-};
 
-//exports.http = function(req, res) {
-//	client.get('http', function(err, count) {
-//		if(err) console.log(err)
-//		else {
-//			res.render('awesome', {httpCount:count});
-//		}
-//	});
-//};
+		res.render('awesome', {link0:linkResult[0],
+									link1:linkResult[1],
+									link2:linkResult[2],
+									link3:linkResult[3],
+									link4:linkResult[4],
+									}); //end render
+	});  //end client.zrevrange
+}; //end exports.index
+
 
