@@ -5,18 +5,17 @@
 * April 4, 2012
 */
 
+
 // Module dependencies.
  
 var express = require('express');
 var routes = require('./routes');
 var awesome = require('./routes/word/awesome');
-//var cool = require('./routes/word/cool');
-//var rad = require('./routes/word/rad');
-//var gnarly = require('./routes/word/gnarly');
-//var groovy = require('./routes/word/groovy');
+var cool = require('./routes/word/cool');
+var rad = require('./routes/word/rad');
+var gnarly = require('./routes/word/gnarly');
+var groovy = require('./routes/word/groovy');
 var app = module.exports = express.createServer();
-//var redis = require('redis');
-//var client = redis.createClient();
 
 
 // Configuration
@@ -57,10 +56,10 @@ app.get('/word/awesome', awesome.index);
 app.get('/word/:word', routes.word);
 //app.get('/word/awesome', awesome.http);
 //app.get('/word/awesome', awesome.awesomeLink);
-//app.get('/word/cool', cool.index);
-//app.get('/word/rad', rad.index);
-//app.get('/word/gnarly', gnarly.index);
-//app.get('/word/groovy', groovy.index); //hand off to groovy controller
+app.get('/word/cool', cool.index);
+app.get('/word/rad', rad.index);
+app.get('/word/gnarly', gnarly.index);
+app.get('/word/groovy', groovy.index); //hand off to groovy controller
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
