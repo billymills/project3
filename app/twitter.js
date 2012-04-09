@@ -1,6 +1,8 @@
 var twitter = require('ntwitter');
 var redis = require('redis');
 var credentials = require('./credentials.js');
+
+function runTwitter() {
                                                                                                                                                                                                                
 var client = redis.createClient();
 
@@ -76,3 +78,7 @@ t.stream(
         });
     }
 );
+
+};
+
+module.exports = runTwitter;

@@ -17,6 +17,8 @@ var gnarly = require('./routes/word/gnarly');
 var groovy = require('./routes/word/groovy');
 var app = module.exports = express.createServer();
 
+var runTwitter = require('./twitter.js');
+var t = new runTwitter();
 
 // Configuration
 
